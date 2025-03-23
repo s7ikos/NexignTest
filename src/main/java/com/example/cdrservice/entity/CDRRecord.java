@@ -43,12 +43,6 @@ public class CDRRecord {
     private LocalDateTime endTime;
 
     /**
-     * Общая длительность звонка в секундах.
-     */
-    @Column(name = "total_call_time", nullable = false)
-    private int totalCallTime;
-
-    /**
      * Номер телефона звонящего.
      */
     @Column(name = "caller_number", nullable = false)
@@ -103,7 +97,6 @@ public class CDRRecord {
         this.callType = callType;
         this.startTime = startTime;
         this.endTime = endTime;
-        this.totalCallTime = (int) java.time.Duration.between(startTime, endTime).getSeconds();
         this.callerId = callerCustomer != null ? callerCustomer.getId() : null;
         this.receiverId = receiverCustomer != null ? receiverCustomer.getId() : null;
         this.callerNumber = callerNumber;
@@ -129,14 +122,13 @@ public class CDRRecord {
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("CdrRecord{");
+        final StringBuilder sb = new StringBuilder("CDRRecord{");
         sb.append("id=").append(id);
         sb.append(", callType='").append(callType).append('\'');
         sb.append(", callerNumber='").append(callerNumber).append('\'');
         sb.append(", receiverNumber='").append(receiverNumber).append('\'');
         sb.append(", startTime=").append(startTime);
         sb.append(", endTime=").append(endTime);
-        sb.append(", totalCallTime=").append(totalCallTime);
         sb.append(", callerId=").append(callerId);
         sb.append(", receiverId=").append(receiverId);
         sb.append('}');

@@ -31,7 +31,7 @@ public class CallsGenerator {
      * Параметры Гауссовского (Нормального) распределения для генерации звонков.
      */
     private static final double AVERAGE_CALL_TIME_IN_SECONDS = 60;
-    private static final long DISPERSION = 20;
+    private static final long STANDARD_DEVIATION = 20;
     private static final long MAX_LENGTH_CALL_IN_SECONDS = TimeUnit.MINUTES.toSeconds(30);
 
     /**
@@ -120,7 +120,7 @@ public class CallsGenerator {
         try {
             double gaussianValue;
             for (int i = 0; i < quantityCalls; i++) {
-                gaussianValue = Math.min(Math.abs(AVERAGE_CALL_TIME_IN_SECONDS + DISPERSION * RANDOM.nextGaussian()), MAX_LENGTH_CALL_IN_SECONDS);
+                gaussianValue = Math.min(Math.abs(AVERAGE_CALL_TIME_IN_SECONDS + STANDARD_DEVIATION * RANDOM.nextGaussian()), MAX_LENGTH_CALL_IN_SECONDS);
                 LocalDateTime startTime = CallsGenerator.generateDate();
                 LocalDateTime endTime = startTime.plusSeconds((long) gaussianValue);
                 customerCalls.add(List.of(startTime, endTime));

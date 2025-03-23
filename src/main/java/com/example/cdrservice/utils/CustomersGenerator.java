@@ -30,8 +30,12 @@ public class CustomersGenerator {
     public static List<Customer> makeCustomers(int numberOfCustomers) {
         List<Customer> customersList = new ArrayList<>();
         Set<String> phoneNumbers = new HashSet<>();
+        /**
+         * Данный номер телефона добавляется всегда для удобства проверки
+         */
+        customersList.add(new Customer("79110000000"));
 
-        for (int i = 0; i < numberOfCustomers; i++) {
+        for (int i = 1; i < numberOfCustomers; i++) {
             String phoneNumber = generatePhoneNumber();
             while (phoneNumbers.contains(phoneNumber)) {
                 phoneNumber = generatePhoneNumber();

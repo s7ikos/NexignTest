@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.Duration;
 import java.util.UUID;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -107,9 +108,9 @@ public class ControllerUtils {
         calls = calls.stream()
                 .filter(call -> call.getStartTime().isAfter(startTime) && call.getEndTime().isBefore(endTime))
                 .toList();
-
+        //
         int totalSeconds = calls.stream()
-                .mapToInt(CDRRecord::getTotalCallTime)
+                .mapToInt(call -> (int) Duration.between(call.getStartTime(), call.getEndTime()).getSeconds())
                 .sum();
 
         int hours = totalSeconds / 3600;
