@@ -187,7 +187,7 @@ daemon-поток засыпает, в то время как Main Thread ост
           "totalTime": "00:19:10"
           }
         }
-        ....
+        ...
         {
           "msisdn": "79111234567",
           "incomingCall": {

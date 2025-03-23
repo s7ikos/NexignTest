@@ -39,7 +39,8 @@ public class SaveCDR {
     @PostMapping("/save-cdr")
     public ResponseEntity<String> saveCDR(@RequestBody DataToGetUDR request) {
         String uuid = ControllerUtils.generateUniqueUUID();
-        if (request.getStartOfPeriod() == null || request.getEndOfPeriod() == null) {
+        if (request.getMsisdn() == null || request.getMsisdn().isEmpty() || request.getStartOfPeriod() == null
+                || request.getEndOfPeriod() == null) {
             return ResponseEntity.badRequest().body("Error with period borders\nUUID: " + uuid);
         }
         try {

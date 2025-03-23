@@ -35,7 +35,8 @@ public class GenerateUDR {
      */
     @PostMapping("/generate-udr")
     public ResponseEntity<String> getUDR(@RequestBody DataToGetUDR request) {
-        if (request.getMsisdn().isEmpty() || request.getEndOfPeriod() == null || request.getStartOfPeriod() == null) {
+        if (request.getMsisdn() == null || request.getMsisdn().isEmpty() || request.getEndOfPeriod() == null
+                || request.getStartOfPeriod() == null) {
             return ResponseEntity.badRequest().body("No msisdn or error with period borders");
         }
         try {
